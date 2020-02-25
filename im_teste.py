@@ -2,15 +2,15 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 
+NUMERO_DE_COPIAS = 1
+NOME_DA_IMAGEM_ORIGINAL = "rifa.png"
+NOME_DAS_IMAGENS_DE_SAIDA = "rifa"
 ARQUIVO_DA_FONTE = "Best in class.otf"
-TAMANHO_DA_FONTE = 24
 COR_DA_FONTE = "red"
 FORMATO = "png"
 NUMERO_DE_DIGITOS = "3"
 
-NUMERO_DE_COPIAS = 1
-NOME_DA_IMAGEM_ORIGINAL = "rifa.png"
-NOME_DAS_IMAGENS_DE_SAIDA = "rifa"
+TAMANHO_DA_FONTE = 24
 
 POSICAO_DA_NUMERACAO_1 = (80,40)
 POSICAO_DA_NUMERACAO_2 = (530,302)
@@ -25,10 +25,10 @@ MENSAGEM_DO_VALOR = "R$1.400,00"
 POSICAO_DO_VALOR = ( 1000,POSICAO_DA_DATA[1] )
 
 class texto:
-	def __init__(self, mensagem):
+	def __init__(self, mensagem, posicao):
 		self.mensagem = mensagem
+		self.posicao = posicao
 	
-	posicao = (0,0)
 	arquivo_da_fonte = ARQUIVO_DA_FONTE
 	tamanho = TAMANHO_DA_FONTE
 	cor_da_fonte = COR_DA_FONTE
@@ -41,6 +41,9 @@ class texto:
 
 image = Image.open(NOME_DA_IMAGEM_ORIGINAL)
 
+premio = texto(MENSAGEM_DO_PREMIO, POSICAO_DO_PREMIO)
+data = texto( MENSAGEM_DA_DATA, POSICAO_DA_DATA)
+
 for i in range(1, NUMERO_DE_COPIAS + 1):
 	copy = image.copy()
 
@@ -48,11 +51,9 @@ for i in range(1, NUMERO_DE_COPIAS + 1):
 	numeracao = ("%." + NUMERO_DE_DIGITOS + "i") % i
 	text = str(numeracao)
 
-	numeracao_1 = texto(text)
-	numeracao_1.posicao = POSICAO_DA_NUMERACAO_1
+	numeracao_1 = texto(text, POSICAO_DA_NUMERACAO_1)
 
-	numeracao_2 = texto(text)
-	numeracao_2.posicao = POSICAO_DA_NUMERACAO_2
+	numeracao_2 = texto(text, POSICAO_DA_NUMERACAO_2)
 
 	draw.text(*numeracao_1.get_parametros_do_draw() )
 	draw.text(*numeracao_2.get_parametros_do_draw() )
