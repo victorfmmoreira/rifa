@@ -57,6 +57,9 @@ for i in range(1, NUMERO_DE_COPIAS + 1):
 
 	draw.text(*numeracao_1.get_parametros_do_draw() )
 	draw.text(*numeracao_2.get_parametros_do_draw() )
+	draw.text(*premio.get_parametros_do_draw() )
+	draw.text(*data.get_parametros_do_draw() )
+	
 
 	#copy.show()
 	filename = NOME_DAS_IMAGENS_DE_SAIDA + str(numeracao) + "." + FORMATO;
