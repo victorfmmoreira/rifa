@@ -2,7 +2,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 
-NUMERO_DE_COPIAS = 1
+NUMERO_DE_COPIAS = int( input("Digite o número de cópias: ") )
 NOME_DA_IMAGEM_ORIGINAL = "rifa.png"
 NOME_DAS_IMAGENS_DE_SAIDA = "rifa"
 ARQUIVO_DA_FONTE = "Best in class.otf"
